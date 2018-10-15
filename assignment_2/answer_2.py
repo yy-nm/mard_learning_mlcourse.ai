@@ -73,9 +73,22 @@ print(wether_delay_count)
 ### answer 5
 print("answer 5")
 ### answer 5
-fig_data = raw_data[~raw_data['DepTime'].isna()]
-sns.distplot(fig_data['DepTime'])
-
+#fig_data = raw_data[~raw_data['DepTime'].isna()]
+#sns.distplot(fig_data['DepTime'])
+#'''
+count_data = []
+count_data_index = []
+for i in range(0, 2400, 100):
+	count_data.append(len(raw_data[(~raw_data['DepTime'].isna()) & (raw_data['DepTime'] > i) & (raw_data['DepTime'] < i + 100)].values))
+	count_data_index.append(i)
+	pass
+print(count_data)
+count_series = pandas.Series(count_data)
+count_index_series = pandas.Series(count_data_index)
+fig_data = pandas.concat({'time': count_index_series, 'count': count_series}, axis=1)
+# fig_data['count'].hist()
+fig_data['time'].plot(kind='density', xlim = (0, 2400))
+#'''
 
 ### answer 6
 print("answer 6")
