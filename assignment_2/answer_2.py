@@ -32,7 +32,8 @@ raw_data = pandas.read_csv(data_path, usecols=dtype.keys(), dtype=dtype)
 print("answer 1")
 # carrier_data = raw_data['UniqueCarrier']
 # print(carrier_data.nunique())
-print(raw_data.groupby('UniqueCarrier').size().sort_values(ascending=False).head(10))
+# print(raw_data.groupby('UniqueCarrier').size().sort_values(ascending=False).head(10))
+print(raw_data[raw_data["Cancelled"] == 0].groupby('UniqueCarrier').size().sort_values(ascending=False).head(10))
 # print(raw_data.groupby('UniqueCarrier').size().head(10))
 
 
